@@ -79,6 +79,7 @@
         define( 'WP_LIBRARY_PATH', __DIR__ );
         define( 'WP_LIBRARY_URL', plugins_url('', WP_LIBRARY_FILE ) );
         define( 'WP_LIBRARY_ASSETS', WP_LIBRARY_FILE . '/assets' );
+        define('WP_LIBRARY_BASE_DIR', plugin_dir_url( __FILE__ ) );
 
 
     }
@@ -92,8 +93,8 @@
      public function init_plugin(){
 
         
-
-        new Library\System\Assets();
+        
+    //    new Library\System\Assets();
 
             if ( is_admin() ){
 

@@ -11,8 +11,22 @@ class Shortcode {
     /**
      * Initializes the class
      */
-    function __construct() {
-        add_shortcode( 'library-code', [ $this, 'render_shortcode' ] );
+    function __construct()
+    {
+        add_shortcode('library-code', [$this, 'render_shortcode']);
+    }
+
+
+
+
+    public function loadAssets()
+    {
+        wp_enqueue_style(
+            'library_frontends_css',
+            WP_LIBRARY_BASE_DIR. '/assets/css/frontend.css',
+            array(),
+            '1.0.0'
+        );
     }
 
     /**
@@ -24,6 +38,8 @@ class Shortcode {
      * @return string
      */
     public function render_shortcode( $atts = [], $content = '' ) {
+
+        $this->loadAssets();
 
         global $wpdb;
         $atts = shortcode_atts(array(
@@ -42,54 +58,86 @@ class Shortcode {
                   )
                 );
 
+                
+                $content = "<head>
+                <style>
+                #customers {
+                  font-family: Arial, Helvetica, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                
+                #customers td, #customers th {
+                  border: 1px solid #ddd;
+                  padding: 8px;
+                }
+                
+                #customers tr:nth-child(even){background-color: #f2f2f2;}
+                
+                #customers tr:hover {background-color: #ddd;}
+                
+                #customers th {
+                  padding-top: 12px;
+                  padding-bottom: 12px;
+                  text-align: left;
+                  background-color: #04AA6D;
+                  color: white;
+                }
+                </style>
+                </head>";
   
-                $content = "<table>
+                $content .= "<table id='customers'>
                 <tr>
                   <th>ID</th>
                   <th>Book</th>
                   <th>Genre</th>
                   <th>Author</th>
                 </tr>
-                <tr>";
-
-           
+                ";
         
         
-                $content .="<td>";
+                
         
-               
+               $content .="<tr>";
                 
                 foreach($items as $id ){
+                    $content .="<tr><td>";
                     
-                    $content .= esc_html($id->id)."</br>";
+                    $content .= esc_html($id->id);
+    
+    
+                    $content .="</td>";
+    
+                    $content .="<td>";
+                    
+                    $content .= esc_html($id->book_name);
+    
+    
+                    $content .="</td>";
+    
+                    $content .="<td>";
+                    
+                    $content .= esc_html($id->genre);
+    
+    
+                    $content .="</td>";
+    
+                    $content .="<td>";
+                    
+                    $content .= esc_html($id->author);
+    
+    
+                    $content .="</td></tr>";
                     
                 }
-                $content .="</td>";
-        
-                $content .="<td>";
-                foreach($items as $name ){
-                    $content .= esc_html($name->book_name)."</br>";
-        
-                }
-                $content .="</td>";
-        
-                $content .="<td>";
-                foreach($items as $genre ){
-                    $content .= esc_html($name->genre)."</br>";
-        
-                }
-                $content .="</td>";
-        
-                $content .="<td>";
-                foreach($items as $author ){
-                    $content .= esc_html($author->author)."</br>";
-        
-                }
-                $content .="</td>";
-        
+    
+               
+               
         
              
-              $content .="  </tr></table>";
+             
+              $content .="</table>";
+             
         
               return $content;
 
@@ -100,53 +148,87 @@ class Shortcode {
         else{
 
 
-            $items = lb_book_get_addresses($atts);  
-            $content = "<div class='new' ><table>
+            $items = lb_book_get_addresses($atts);
+            
+            
+            $content = "<head>
+                <style>
+                #customers {
+                  font-family: Arial, Helvetica, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                
+                #customers td, #customers th {
+                  border: 1px solid #ddd;
+                  padding: 8px;
+                }
+                
+                #customers tr:nth-child(even){background-color: #f2f2f2;}
+                
+                #customers tr:hover {background-color: #ddd;}
+                
+                #customers th {
+                  padding-top: 12px;
+                  padding-bottom: 12px;
+                  text-align: left;
+                  background-color: #04AA6D;
+                  color: white;
+                }
+                </style>
+                </head>";
+            $content .= "<table id='customers'>
             <tr>
               <th>ID</th>
               <th>Book</th>
               <th>Genre</th>
               <th>Author</th>
             </tr>
-            <tr>";
+            ";
     
     
-            $content .="<td>";
+            
     
-           
+           $content .="<tr>";
             
             foreach($items as $id ){
+                $content .="<tr><td>";
                 
-                $content .= esc_html($id->id)."</br>";
+                $content .= esc_html($id->id);
+
+
+                $content .="</td>";
+
+                $content .="<td>";
+                
+                $content .= esc_html($id->book_name);
+
+
+                $content .="</td>";
+
+                $content .="<td>";
+                
+                $content .= esc_html($id->genre);
+
+
+                $content .="</td>";
+
+                $content .="<td>";
+                
+                $content .= esc_html($id->author);
+
+
+                $content .="</td></tr>";
                 
             }
-            $content .="</td>";
-    
-            $content .="<td>";
-            foreach($items as $name ){
-                $content .= esc_html($name->book_name)."</br>";
-    
-            }
-            $content .="</td>";
-    
-            $content .="<td>";
-            foreach($items as $genre ){
-                $content .= esc_html($genre->genre)."</br>";
-    
-            }
-            $content .="</td>";
-    
-            $content .="<td>";
-            foreach($items as $author ){
-                $content .= esc_html($author->author)."</br>";
-    
-            }
-            $content .="</td>";
-    
+
+           
+           
     
          
-          $content .="  </tr></table>";
-          $content .=" </div> ";
+         
+          $content .="</table>";
+         
     
           return $content;
           
