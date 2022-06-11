@@ -23,9 +23,7 @@ class Shortcode {
     {
         wp_enqueue_style(
             'library_frontends_css',
-            WP_LIBRARY_BASE_DIR. '/assets/css/frontend.css',
-            array(),
-            '1.0.0'
+            WP_LIBRARY_BASE_DIR. 'assets/css/frontend.css',
         );
     }
 
@@ -59,7 +57,7 @@ class Shortcode {
                 );
 
                 
-                $content = "<head>
+             /*   $content = "<head>
                 <style>
                 #customers {
                   font-family: Arial, Helvetica, sans-serif;
@@ -85,6 +83,8 @@ class Shortcode {
                 }
                 </style>
                 </head>";
+
+                */
   
                 $content .= "<table id='customers'>
                 <tr>
@@ -151,7 +151,7 @@ class Shortcode {
             $items = lb_book_get_addresses($atts);
             
             
-            $content = "<head>
+        /*    $content = "<head>
                 <style>
                 #customers {
                   font-family: Arial, Helvetica, sans-serif;
@@ -176,7 +176,7 @@ class Shortcode {
                   color: white;
                 }
                 </style>
-                </head>";
+                </head>"; */
             $content .= "<table id='customers'>
             <tr>
               <th>ID</th>
