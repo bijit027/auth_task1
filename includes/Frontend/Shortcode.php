@@ -54,116 +54,34 @@ class Shortcode {
                   )
                 );
   
-                $content .= "<table id='customers'>
-                <tr>
-                  <th>ID</th>
-                  <th>Book</th>
-                  <th>Genre</th>
-                  <th>Author</th>
-                </tr>
-                ";
-        
-        
-               $content .="<tr>";
-                
-                foreach($items as $id ){
-                    $content .="<tr><td>";
-                    
-                    $content .= esc_html($id->id);
-    
-    
-                    $content .="</td>";
-    
-                    $content .="<td>";
-                    
-                    $content .= esc_html($id->book_name);
-    
-    
-                    $content .="</td>";
-    
-                    $content .="<td>";
-                    
-                    $content .= esc_html($id->genre);
-    
-    
-                    $content .="</td>";
-    
-                    $content .="<td>";
-                    
-                    $content .= esc_html($id->author);
-    
-    
-                    $content .="</td></tr>";
-                    
-                }
-    
-             
-              $content .="</table>";
-             
-        
-              return $content;
+                return $this->renderAttributesBasis($items);
+
+            } else {
+                $items = lb_book_get_addresses($atts);
+                return $this->renderWithoutAttributes($items);
+            //    return $this->renderWithoutAttributes($items);
+            }
+}
 
 
+            public function renderAttributesBasis($items)
+            {
 
-        }
-        else{
+                ob_start();
+                $items;
+                include_once WP_LIBRARY_PATH . '/includes/views/AttributeRender.php';
+                $content = ob_get_clean();
+                echo $content;
 
-
-            $items = lb_book_get_addresses($atts);
-            
-            $content .= "<table id='customers'>
-            <tr>
-              <th>ID</th>
-              <th>Book</th>
-              <th>Genre</th>
-              <th>Author</th>
-            </tr>
-            ";
-    
-           $content .="<tr>";
-            
-            foreach($items as $id ){
-                $content .="<tr><td>";
-                
-                $content .= esc_html($id->id);
-
-
-                $content .="</td>";
-
-                $content .="<td>";
-                
-                $content .= esc_html($id->book_name);
-
-
-                $content .="</td>";
-
-                $content .="<td>";
-                
-                $content .= esc_html($id->genre);
-
-
-                $content .="</td>";
-
-                $content .="<td>";
-                
-                $content .= esc_html($id->author);
-
-
-                $content .="</td></tr>";
-                
             }
 
-         
-          $content .="</table>";
-         
-    
-          return $content;
-          
 
-        }
+            public function renderWithoutAttributes($items){
+                ob_start();
+                $items;
+                include_once WP_LIBRARY_PATH . '/includes/views/AttributeRender.php';
+                $content = ob_get_clean();
+                echo $content;
+            }
 
-
-        
-    
-    }
 }
