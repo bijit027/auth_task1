@@ -30,6 +30,6 @@
          }
  
          public function settings_page(){
-             echo 'hello settings_book';
+             echo 'Test menu for submenue';
          }
     }

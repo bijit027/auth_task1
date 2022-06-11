@@ -7,18 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-<div class='new' ><table id='customers'>
+<div class='attribute' >
+    <table id='customers'>
+    
         <tr>
           <th>ID</th>
           <th>Book</th>
           <th>Genre</th>
           <th>Author</th>
+          
         </tr>
         
         <?php foreach ($items as $item): ?>
           <tr>  
             <td>
-                        <?php echo $item->id .'</br>'; ?>
+            <?php echo $item->id .'</br>'; ?>
             </td>
 
             <td>
@@ -27,13 +30,13 @@
 
             <td>
             <?php echo $item->genre .'</br>'; ?>
-
             </td>
 
             <td>
             <?php echo $item->author .'</br>'; ?>
+            </td>
 
-         </td></tr>
+        </tr>
                    
         <?php endforeach; ?>
 

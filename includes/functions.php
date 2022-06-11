@@ -147,20 +147,7 @@ function library_get_books_count(){
  }
 
 
-function lb_book_get_addresses_genre( $atts ){
 
-   
-
-    global $wpdb;
-
-    $genre = $atts;
-
-
-    $sql = $wpdb->get_results(
-        "SELECT * FROM {$wpdb->prefix}library_books WHERE genre = $genre"
-    );
-
-}
     
     
 
@@ -204,4 +191,19 @@ function library_delete_book($id){
     );
  }
 
+
+ function lb_book_get_addresses_genre( $items ){
+    global $wpdb;
+    $genre = $items;
+    $sql = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$wpdb->prefix}library_books WHERE genre=%s",
+            $genre
+            
+          )
+        );
+    return $sql;
+    
+
+}
 
