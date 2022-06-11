@@ -45,8 +45,6 @@ class Shortcode {
         ), $atts);
         $genre = $atts['genre'];
 
-        
-
         if(!empty($atts['genre'])){
 
             $items = $wpdb->get_results(
@@ -55,36 +53,6 @@ class Shortcode {
                     $atts['genre']
                   )
                 );
-
-                
-             /*   $content = "<head>
-                <style>
-                #customers {
-                  font-family: Arial, Helvetica, sans-serif;
-                  border-collapse: collapse;
-                  width: 100%;
-                }
-                
-                #customers td, #customers th {
-                  border: 1px solid #ddd;
-                  padding: 8px;
-                }
-                
-                #customers tr:nth-child(even){background-color: #f2f2f2;}
-                
-                #customers tr:hover {background-color: #ddd;}
-                
-                #customers th {
-                  padding-top: 12px;
-                  padding-bottom: 12px;
-                  text-align: left;
-                  background-color: #04AA6D;
-                  color: white;
-                }
-                </style>
-                </head>";
-
-                */
   
                 $content .= "<table id='customers'>
                 <tr>
@@ -95,8 +63,6 @@ class Shortcode {
                 </tr>
                 ";
         
-        
-                
         
                $content .="<tr>";
                 
@@ -131,17 +97,12 @@ class Shortcode {
                     
                 }
     
-               
-               
-        
-             
              
               $content .="</table>";
              
         
               return $content;
 
-             
 
 
         }
@@ -150,33 +111,6 @@ class Shortcode {
 
             $items = lb_book_get_addresses($atts);
             
-            
-        /*    $content = "<head>
-                <style>
-                #customers {
-                  font-family: Arial, Helvetica, sans-serif;
-                  border-collapse: collapse;
-                  width: 100%;
-                }
-                
-                #customers td, #customers th {
-                  border: 1px solid #ddd;
-                  padding: 8px;
-                }
-                
-                #customers tr:nth-child(even){background-color: #f2f2f2;}
-                
-                #customers tr:hover {background-color: #ddd;}
-                
-                #customers th {
-                  padding-top: 12px;
-                  padding-bottom: 12px;
-                  text-align: left;
-                  background-color: #04AA6D;
-                  color: white;
-                }
-                </style>
-                </head>"; */
             $content .= "<table id='customers'>
             <tr>
               <th>ID</th>
@@ -185,9 +119,6 @@ class Shortcode {
               <th>Author</th>
             </tr>
             ";
-    
-    
-            
     
            $content .="<tr>";
             
@@ -222,10 +153,6 @@ class Shortcode {
                 
             }
 
-           
-           
-    
-         
          
           $content .="</table>";
          
